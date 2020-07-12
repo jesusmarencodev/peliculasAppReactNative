@@ -2,11 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { IconButton } from 'react-native-paper';
-import Home from '../utils/screens/Home';
-import Movie from '../utils/screens/Movie';
-import News from '../utils/screens/News';
-import Popular from '../utils/screens/Popular';
-import Search from '../utils/screens/Search';
+import Home from '../screens/Home';
+import Movie from '../screens/Movie';
+import News from '../screens/News';
+import Popular from '../screens//Popular';
+import Search from '../screens/Search';
 
 const Stack = createStackNavigator();
 

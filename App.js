@@ -12,7 +12,7 @@ import PreferencesContext from './src/context/PreferencesContext';
 
 const App = () => {
 
-	const [theme, setTheme] = useState('light')
+	const [theme, setTheme] = useState('dark');
 
 	DefaultThemePaper.colors.primary = '#1ae1f2';
 	DarkThemePaper.colors.primary = '#1ae1f2';
