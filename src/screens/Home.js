@@ -8,7 +8,7 @@ import usePreferences from '../hooks/usePreferences';
 import CarouselMulti from '../components/CarouselMulti';
 
 export default function Home({navigation}) {
-    const {theme} = usePreferences();
+    const { theme } = usePreferences();
 
     const [newMovies, setNewMovies] = useState(null);
     const [genresList, setGenresList] = useState([]);
@@ -68,7 +68,12 @@ export default function Home({navigation}) {
                     {map(genresList, (genre) => (
                         <Text 
                             key={genre.id}
-                            style={[styles.genre, {color : genre.id !== genreSelected ? '#8697a5' : '#fff'}]}
+                            style = {
+                                         theme === 'dark' ?
+                                             [styles.genre, {color : genre.id !== genreSelected ? '#8697a5' : '#fff'}]
+                                            :[styles.genre, {color : genre.id !== genreSelected ? '#908C8B' : '#000'}]
+                                    }
+                            //style={[styles.genre, {color : genre.id !== genreSelected ? '#8697a5' : '#fff'}]}
                             onPress={()=> onchangeGenre(genre.id)}
                         >
                             {genre.name}
