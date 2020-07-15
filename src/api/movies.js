@@ -1,5 +1,5 @@
 import { API_HOST, API_KEY, LANG } from '../utils/constanst';
-import axios from 'axios';
+
 
 export function getNewsMoviesApi(page = 1) {
 	const url = `${API_HOST}movie/now_playing?api_key=${API_KEY}&language=${LANG}&page=${page}`;
@@ -61,4 +61,25 @@ export const getMovieByIdApi = async (idMovie) => {
 	} catch (error) {
 		console.log(error)
 	} 
+}
+
+export const getVideoMovieApi = async (idMovie) => {
+
+	const urlMovieId = `${API_HOST}movie/${idMovie}/videos?api_key=${API_KEY}&language=${LANG}`
+ 	try {
+		const resultado = await fetch(urlMovieId).then(result => result.json());
+		return resultado.results;
+	} catch (error) {
+		console.log(error)
+	} 
+}
+
+export const getPopularMoviesApi = async (page = 1) => {
+	const url = `${API_HOST}movie/popular?api_key=${API_KEY}&language=${LANG}&page=${page}`
+  	try {
+		const resultado = await fetch(url).then(result => result.json());
+		return resultado;
+	} catch (error) {
+		console.log(error)
+	}  
 }

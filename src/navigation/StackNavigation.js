@@ -66,6 +66,7 @@ export default function StackNavigation({navigation}) {
                 options={
                             { title : '',
                               headerTitleAlign : 'center', 
+                              headerTransparent : true,//hace que el stack sea trasnparente
                               headerLeft : () => buttonLeft('movie'),
                               headerRight : () => buttonRightSearch(),
                             } 
