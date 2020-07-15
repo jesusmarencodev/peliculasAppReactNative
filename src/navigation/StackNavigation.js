@@ -99,6 +99,7 @@ export default function StackNavigation({navigation}) {
                 component={Search}
                 options={
                             { title : '',
+                              headerTransparent: true,
                               headerTitleAlign : 'center',
                               headerLeft : () => buttonLeft('search'),
                             } 

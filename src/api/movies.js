@@ -83,3 +83,14 @@ export const getPopularMoviesApi = async (page = 1) => {
 		console.log(error)
 	}  
 }
+
+export const searchMovieApi = async (search) => {
+	const url = `${API_HOST}search/movie/?api_key=${API_KEY}&language=${LANG}&query=${search}`
+	console.log(url)
+  	try {
+		const resultado = await fetch(url).then(result => result.json());
+		return resultado;
+	} catch (error) {
+		console.log(error)
+	}  
+}

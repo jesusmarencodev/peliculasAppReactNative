@@ -12,15 +12,15 @@ const { width } = Dimensions.get('window')
 export default function News({navigation}) {
 
     const [movies, setMovies] = useState(null);
-    const [page, setpage] = useState(1);
-
+    const [page, setPage] = useState(1);
+    const [showbtnMore, setShowBtnMore] = useState(true)
     const { theme } = usePreferences();
 
     useEffect(()=> {
         getNewsMovies();
-    },[])
+    },[page])
 
-    console.log(movies)
+    
     
     const getNewsMovies = async () => {
         const resultado = await getNewsMoviesApi(page);
@@ -50,6 +50,20 @@ export default function News({navigation}) {
                     ))
                 }
             </View>
+                {showbtnMore && (
+                    <Button
+                        mode = 'contained'
+                        contentStyle = {styles.loadMoreContainer}
+                        style = {styles.loadMore}
+                        labelStyle = {{color : theme === 'dark' ? '#FFF' :  '#000'}}
+                        onPress = {() => setPage( page + 1 )}
+                    >
+                        Cargar mas ...
+                    </Button>
+                )
+
+                }
+
         </ScrollView>
     )
 }
@@ -58,19 +72,24 @@ export default function News({navigation}) {
 function Movie({movie, theme, navigation}) {
 
     const {id, title, poster_path, } = movie;
-    console.log(poster_path)
     const url = `${BASE_PATH_IMG}w500${poster_path}`;
+
+    const goMovie = () => {
+        navigation.navigate('movie', { id })
+    }
     
     return(
-        <View style = { styles.movie }>
-            {poster_path ? (
-                <Image
-                    style = {styles.image}
-                />
-            ):  <Text>{title}</Text>
-            
-            }
-        </View>
+        <TouchableWithoutFeedback onPress = { goMovie }>
+            <View style = { styles.movie }>
+                {poster_path ? (
+                    <Image
+                        style = {styles.image} 
+                        source = {{ uri : url }}
+                    />
+                ):  <Text>{title}</Text>
+                }
+            </View>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -89,5 +108,12 @@ const styles = StyleSheet.create({
     image : {
         width : '100%',
         height : '100%'
+    },
+    loadMoreContainer : {
+        paddingTop : 10,
+        paddingBottom : 30
+    },
+    loadMore : {
+        backgroundColor :'transparent'
     }
 })
